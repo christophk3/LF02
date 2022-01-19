@@ -13,7 +13,15 @@ public class Programm {
         System.out.println();
 
         Banane banane = new Banane();
-        System.out.println(banane.getName());
+
+        banane.setFarbe("gelb");
+        banane.setGewicht(300);
+        banane.setReif(true);
+        banane.setKruemmung(5);
+
+        System.out.println(banane);
+
+        System.out.println();
 
 
     }
