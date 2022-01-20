@@ -5,9 +5,11 @@ public class Programm {
         Trainer trainer = new Trainer("Jürgen",49,10);
         Spieler spieler = new Spieler("Kittel",29,10,10,10,237);
 
-        System.out.println(trainer.getAlter());
-        System.out.println(trainer.getAlter());
-        System.out.println(trainer.getAlter());
+        System.out.println(trainer);
+        System.out.println();
+        System.out.println(spieler);
+
+
 
     }
 }

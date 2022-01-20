@@ -69,4 +69,17 @@ public class Spieler {
     public void setTore(int tore) {
         this.tore = tore;
     }
+
+    //toString Methode
+    public String toString() {
+        String text = "\tName\t\t = " + name2;
+        text += "\n\tAlter\t\t = " + alter2;
+        text += "\n\tStärke\t\t = " + staerke;
+        text += "\n\tTorschuss\t = " + torschuss;
+        text += "\n\tMotivation\t = " + motivation;
+        text += "\n\tTore\t\t = " + tore;
+
+
+        return text;
+    }
 }

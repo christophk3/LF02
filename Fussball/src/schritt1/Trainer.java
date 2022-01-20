@@ -41,6 +41,16 @@ public class Trainer {
         this.erfahrung = erfahrung;
     }
 
+    //toString Methode
+    public String toString() {
+        String text = "\tName\t\t = " + name;
+        text += "\n\tAlter\t\t = " + alter;
+        text += "\n\tErfahrung\t = " + erfahrung;
+
+        return text;
+
+    }
+
 
 
 
