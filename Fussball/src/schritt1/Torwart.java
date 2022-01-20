@@ -15,8 +15,13 @@ public class Torwart extends Spieler {
         this.reaktion = reaktion;
     }
 
-    public Torwart(String name2, int alter2, int staerke, int motivation, int reaktion) {
-        super(name2, alter2, staerke, motivation, reaktion);
+    public Torwart(String name, int alter, int staerke, int motivation, int reaktion) {
+        super(name, alter, staerke, 0, motivation, 0);
+        this.reaktion = reaktion;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "\n\tReaktion\t = " + reaktion;
+    }
 }

@@ -1,57 +1,36 @@
 package schritt1;
 
-public class Trainer {
+public class Trainer extends Person {
 
     //Attribute erzeugt
-    private String name;
-    private int alter;
     private int erfahrung;
 
     //Konstruktor
     public Trainer(String name, int alter, int erfahrung) {
-        this.name = name;
-        this.alter = alter;
+        super(name, alter);
         this.erfahrung = erfahrung;
     }
 
 
     //getter
-    public String getName() {
-        return name;
-    }
-
-    public int getAlter() {
-        return alter;
-    }
-
     public int getErfahrung() {
         return erfahrung;
     }
 
     //setter
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAlter(int alter) {
-        this.alter = alter;
-    }
-
     public void setErfahrung(int erfahrung) {
         this.erfahrung = erfahrung;
     }
 
     //toString Methode
     public String toString() {
-        String text = "\tName\t\t = " + name;
-        text += "\n\tAlter\t\t = " + alter;
+        String text = "\tName\t\t = " + getName();
+        text += "\n\tAlter\t\t = " + getAlter();
         text += "\n\tErfahrung\t = " + erfahrung;
 
         return text;
 
     }
-
-
 
 
 }

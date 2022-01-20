@@ -1,19 +1,16 @@
 package schritt1;
 
-public class Spieler {
+public class Spieler extends Person {
 
     //Attribute erzeugen
-    private String name2;
-    private int alter2;
     private int staerke;
     private int torschuss;
     private int motivation;
     private int tore;
 
     //Konstruktor
-    public Spieler(String name2, int alter2, int staerke, int torschuss, int motivation, int tore) {
-        this.name2 = name2;
-        this.alter2 = alter2;
+    public Spieler(String name, int alter, int staerke, int torschuss, int motivation, int tore) {
+        super(name, alter);
         this.staerke = staerke;
         this.torschuss = torschuss;
         this.motivation = motivation;
@@ -21,14 +18,6 @@ public class Spieler {
     }
 
     //getter
-    public String getName2() {
-        return name2;
-    }
-
-    public int getAlter2() {
-        return alter2;
-    }
-
     public int getStaerke() {
         return staerke;
     }
@@ -46,14 +35,6 @@ public class Spieler {
     }
 
     //setter
-    public void setName2(String name2) {
-        this.name2 = name2;
-    }
-
-    public void setAlter2(int alter2) {
-        this.alter2 = alter2;
-    }
-
     public void setStaerke(int staerke) {
         this.staerke = staerke;
     }
@@ -72,8 +53,8 @@ public class Spieler {
 
     //toString Methode
     public String toString() {
-        String text = "\tName\t\t = " + name2;
-        text += "\n\tAlter\t\t = " + alter2;
+        String text = "\tName\t\t = " + getName();
+        text += "\n\tAlter\t\t = " + getAlter();
         text += "\n\tStärke\t\t = " + staerke;
         text += "\n\tTorschuss\t = " + torschuss;
         text += "\n\tMotivation\t = " + motivation;
