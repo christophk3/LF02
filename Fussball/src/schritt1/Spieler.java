@@ -52,6 +52,7 @@ public class Spieler extends Person {
     }
 
     //toString Methode
+    @Override
     public String toString() {
         String text = "\tName\t\t = " + getName();
         text += "\n\tAlter\t\t = " + getAlter();

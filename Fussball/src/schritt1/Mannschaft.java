@@ -84,5 +84,17 @@ public class Mannschaft {
         return staerke;
     }
 
+    @Override
+
+    public String toString() {
+        String text = "\n\tName: " + name;
+        text += "\n\tTrainer: " + trainer;
+        text += "\n\tTorwart: " + torwart;
+        text += "\n\tSpieler: " + getSpielerListe();
+        text += "\n\tMotivation: " + getMotivation();
+        text += "\n\tStärke: " + getStaerke();
+        return text;
+    }
+
 
 }
