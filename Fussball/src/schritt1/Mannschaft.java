@@ -15,7 +15,7 @@ public class Mannschaft {
     private int staerkedurchschnitt;
 
     //Konstruktor
-    public Mannschaft(String name, Trainer trainer, Torwart torwart) {
+    public Mannschaft(String name, Trainer trainer, Torwart torwart, ArrayList spielerListe) {
         this.name = name;
         this.trainer = trainer;
         this.torwart = torwart;
@@ -70,7 +70,7 @@ public class Mannschaft {
         }
         motivation += torwart.getMotivation();
         motivationsdurchschnitt = motivation / (spielerListe.size() + 1);
-        return motivation;
+        return motivationsdurchschnitt;
     }
 
     public int getStaerke() {
@@ -81,18 +81,18 @@ public class Mannschaft {
         }
         staerke += torwart.getStaerke();
         staerkedurchschnitt = staerke / (spielerListe.size() + 1);
-        return staerke;
+        return staerkedurchschnitt;
     }
 
     @Override
 
     public String toString() {
         String text = "\n\tName: " + name;
-        text += "\n\tTrainer: " + trainer;
-        text += "\n\tTorwart: " + torwart;
+        text += "\n\tTrainer:\n " + trainer;
+        text += "\n\n\tTorwart: " + torwart;
         text += "\n\tSpieler: " + getSpielerListe();
-        text += "\n\tMotivation: " + getMotivation();
-        text += "\n\tStärke: " + getStaerke();
+        text += "\n\tMotivation: " + motivationsdurchschnitt;
+        text += "\n\tStärke: " + staerkedurchschnitt;
         return text;
     }
 
