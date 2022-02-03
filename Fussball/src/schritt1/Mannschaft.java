@@ -33,8 +33,8 @@ public class Mannschaft {
     }
 
     //getter trainer
-    public String getTrainer() {
-        return name;
+    public Trainer getTrainer() {
+        return trainer;
     }
 
     //setter trainer

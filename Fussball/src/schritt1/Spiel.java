@@ -4,12 +4,13 @@ public class Spiel {
     private Mannschaft heim;
     private Mannschaft gast;
     private Ergebnis ergebnis;
-    private StringBuilder spielverlauf;
+    private StringBuilder spielbericht;
 
     public Spiel(Mannschaft heim, Mannschaft gast, Ergebnis ergebnis) {
         this.heim = heim;
         this.gast = gast;
         this.ergebnis = ergebnis;
+        spielbericht = new StringBuilder();
 
     }
 
@@ -25,15 +26,15 @@ public class Spiel {
         return ergebnis;
     }
 
-    public StringBuilder getSpielverlauf() {
-        return spielverlauf;
+    public StringBuilder getSpielbericht() {
+        return spielbericht;
     }
 
     public String toString() {
         String text = "\n\tHeimmannschaft: " + heim;
         text += "\n\tGastmannschaft: " + gast;
         text += "\n\tErgebnis: " + ergebnis;
-        text += "\n\tSpielverlauf: " + spielverlauf;
+        text += "\n\tSpielverlauf: " + spielbericht;
         return text;
     }
 }

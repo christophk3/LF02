@@ -51,6 +51,10 @@ public class Spieler extends Person {
         this.tore = tore;
     }
 
+    public void addTor() {
+        tore++;
+    }
+
     //toString Methode
     @Override
     public String toString() {

@@ -4,28 +4,20 @@ public class Ergebnis {
     private int heimtreffer;
     private int gasttreffer;
 
-
-    public int getHeimtreffer() {
+    public int addToreHeim() {
+        heimtreffer++;
         return heimtreffer;
     }
 
-    public void HeimTreffer() {
-        heimtreffer++;
-    }
-
-
-    public int getGasttreffer() {
-        return gasttreffer;
-    }
-
-    public void GastTreffer() {
+    public int addToreGast() {
         gasttreffer++;
+        return gasttreffer;
     }
 
     @Override
     public String toString() {
-        String text = "\n\tHeim: " + getHeimtreffer();
-        text += "\n\tGast: " + getGasttreffer();
+        String text = "\n\tHeim: " + heimtreffer;
+        text += "\n\tGast: " + gasttreffer;
         return text;
 
 
