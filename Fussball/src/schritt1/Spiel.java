@@ -31,10 +31,9 @@ public class Spiel {
     }
 
     public String toString() {
-        String text = "\n\tHeimmannschaft: " + heim;
-        text += "\n\tGastmannschaft: " + gast;
-        text += "\n\tErgebnis: " + ergebnis;
-        text += "\n\tSpielverlauf: " + spielbericht;
+        String text = "\nHeimmannschaft: " + heim;
+        text += "\nGastmannschaft: " + gast;
+        text += "\nSpielbericht:\n\n " + spielbericht;
         return text;
     }
 }

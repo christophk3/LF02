@@ -13,7 +13,7 @@ public class SpielAbbruchException extends Exception{
 
     @Override
     public String getMessage() {
-        System.out.println("Spielabbruch " + spielMinute);
-        return super.getMessage();
+
+        return "Spielabbruch " + getSpielminute();
     }
 }

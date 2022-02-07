@@ -63,17 +63,19 @@ public class Mannschaft {
     }
 
     public int getMotivation() {
-        for (Spieler i : spielerListe
-        ) {
+        motivation = 0;
+        for (Spieler i : spielerListe) {
             motivation += i.getMotivation();
-
         }
         motivation += torwart.getMotivation();
         motivationsdurchschnitt = motivation / (spielerListe.size() + 1);
+
         return motivationsdurchschnitt;
+
     }
 
     public int getStaerke() {
+        staerke = 0;
         for (Spieler i : spielerListe
         ) {
             staerke += i.getStaerke();
@@ -87,12 +89,12 @@ public class Mannschaft {
     @Override
 
     public String toString() {
-        String text = "\n\tName: " + name;
-        text += "\n\tTrainer:\n " + trainer;
-        text += "\n\n\tTorwart: " + torwart;
-        text += "\n\tSpieler: " + getSpielerListe();
-        text += "\n\tMotivation: " + motivationsdurchschnitt;
-        text += "\n\tStärke: " + staerkedurchschnitt;
+        String text = "\nName: " + name + "\n";
+        text += "\nTrainer:\n" + trainer;
+        text += "\nTorwart: " + torwart;
+        text += "\nSpieler: " + getSpielerListe();
+        text += "\n\nMotivation\t: " + motivationsdurchschnitt;
+        text += "\n\tStärke\t: " + getStaerke() + "\n";
         return text;
     }
 

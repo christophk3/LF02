@@ -26,7 +26,7 @@ public class Trainer extends Person {
     public String toString() {
         String text = "\tName\t\t = " + getName();
         text += "\n\tAlter\t\t = " + getAlter();
-        text += "\n\tErfahrung\t = " + erfahrung;
+        text += "\n\tErfahrung\t = " + erfahrung + "\n";
 
         return text;
 

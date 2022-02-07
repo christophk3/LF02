@@ -22,6 +22,6 @@ public class Torwart extends Spieler {
 
     @Override
     public String toString() {
-        return super.toString() + "\n\tReaktion\t = " + reaktion;
+        return super.toString() + "\n\tReaktion\t = " + reaktion + "\n";
     }
 }

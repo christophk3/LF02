@@ -57,9 +57,7 @@ public class Gameplay {
             // Zufällige Spielminute für nächste Aktion festlegen
             spielMinute = spielMinute + random.nextInt(MAX_DAUER_BIS_AKTION + 1);
     } while(spielMinute <=spielDauer);
-        spiel.getSpielbericht().
-
-    append(spiel.getErgebnis());
+        spiel.getSpielbericht().append(spiel.getErgebnis());
 }
 
     /**
