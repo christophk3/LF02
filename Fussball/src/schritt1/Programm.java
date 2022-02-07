@@ -36,7 +36,12 @@ public class Programm {
         System.out.println();
         Spiel spiel = new Spiel(mannschaft1, mannschaft2, ergebnis);
         Gameplay gameplay = new Gameplay();
-        gameplay.spielen(spiel);
+        try {
+            gameplay.spielen(spiel);
+        }catch (SpielAbbruchException e) {
+            System.out.println(e.getMessage());
+        }
+
         System.out.println(ergebnis);
         System.out.println(spiel);
 

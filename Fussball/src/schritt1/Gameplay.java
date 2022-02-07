@@ -11,9 +11,10 @@ public class Gameplay {
 
     /**
      * Simuliert ein Spiel.
+     *
      * @param spiel Das zu spielende Spiel.
      */
-    public static void spielen(Spiel spiel) {
+    public static void spielen(Spiel spiel) throws SpielAbbruchException {
         Random random = new Random();
         Mannschaft offensiv;
         Mannschaft defensiv;
@@ -22,6 +23,9 @@ public class Gameplay {
         // Zufällige Spielminute für erste Aktion festlegen
         int spielMinute = 1 + random.nextInt(MAX_DAUER_BIS_AKTION + 1);
         do {
+            if (brecheSpielab()) {
+                throw new SpielAbbruchException(spielMinute);
+            }
             // Ermittlung der offensiven bzw. defensiven Mannschaft
             int heimWert = ermittelMannschaftsWert(spiel.getHeim());
             int gastWert = ermittelMannschaftsWert(spiel.getGast());
@@ -30,8 +34,7 @@ public class Gameplay {
             if (zufall <= heimWert) {
                 offensiv = spiel.getHeim();
                 defensiv = spiel.getGast();
-            }
-            else {
+            } else {
                 offensiv = spiel.getGast();
                 defensiv = spiel.getHeim();
             }
@@ -44,24 +47,25 @@ public class Gameplay {
                 schuetze.addTor();
                 if (offensiv == spiel.getHeim()) {
                     spiel.getErgebnis().addToreHeim();
-                }
-                else {
+                } else {
                     spiel.getErgebnis().addToreGast();
                 }
                 spiel.getSpielbericht().append(spielMinute + ": Tor von " + schuetze.getName() + "!\n");
-            }
-            else {
+            } else {
                 spiel.getSpielbericht().append(spielMinute + ": Schuss von " + schuetze.getName() + " gehalten.\n");
             }
             // Zufällige Spielminute für nächste Aktion festlegen
             spielMinute = spielMinute + random.nextInt(MAX_DAUER_BIS_AKTION + 1);
-        } while(spielMinute <= spielDauer);
-        spiel.getSpielbericht().append(spiel.getErgebnis());
-    }
+    } while(spielMinute <=spielDauer);
+        spiel.getSpielbericht().
+
+    append(spiel.getErgebnis());
+}
 
     /**
      * Errechnet den aktuellen Stärkewert eine Mannschaft.
      * Errechnet sich aus der Spielstärke und Motivation der Mannschaft und der Erfahrung des Trainers.
+     *
      * @return Der Stärkewert.
      */
     private static int ermittelMannschaftsWert(Mannschaft mannschaft) {
@@ -72,8 +76,9 @@ public class Gameplay {
 
     /**
      * Ermittelt, ob ein Torschuss erfolgreich ist oder nicht.
+     *
      * @param schuetze Der Torschütze.
-     * @param torwart Der Torwart.
+     * @param torwart  Der Torwart.
      * @return Ja, wenn der Torschuss erfolgreich ist. Sonst nein.
      */
     private static boolean erzieltTor(Spieler schuetze, Torwart torwart) {
@@ -88,11 +93,23 @@ public class Gameplay {
         // Ermitteln, ob Schütze trifft
         if (schuss > abwehr) {
             getroffen = true;
-        }
-        else {
+        } else {
             getroffen = false;
         }
         return getroffen;
+    }
+
+    public static boolean brecheSpielab() {
+        boolean abbruch;
+        Random random = new Random();
+        int zahl = random.nextInt(999);
+        if (zahl == 0) {
+            abbruch = true;
+        } else {
+            abbruch = false;
+        }
+        return abbruch;
+
     }
 
 }
