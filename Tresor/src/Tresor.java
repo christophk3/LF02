@@ -1,29 +1,42 @@
 import java.util.ArrayList;
 
 public class Tresor {
-    private ArrayList<Gegenstand> gegenstandArrayList;
+    private ArrayList<Gegenstand> gegenstaende;
 
-    public Tresor() {
-        super();
+    public Tresor(ArrayList<Gegenstand> gegenstaende) {
+        this.gegenstaende = gegenstaende;
+    }
+
+    public ArrayList<Gegenstand> getGegenstand() {
+        return gegenstaende;
     }
 
     public double berechneGesamtwert() {
-        return berechneGesamtwert();
+        double gesamtwert = 0;
+        for (Gegenstand i:gegenstaende) {
+            gesamtwert += i.getWert();
+        }
+        return gesamtwert;
 
     }
 
-    public void gegenstandHinzufuegen(Gegenstand gegenstand) {
+    public void addGegenstand(Gegenstand gegenstand) {
+        gegenstaende.add(gegenstand);
 
     }
 
-    public void gegenstandEntnehmen(Gegenstand gegenstand) {
+    public void removeGegenstand(Gegenstand gegenstand) {
+        if () {
+
+        }
 
     }
 
-    public String ermittleId() {
-        return ermittleId();
+    @Override
+    public String toString() {
+        return "Tresor{" +
+                "gegenstaende=" + gegenstaende +
+                '}';
     }
-
-
 }
 
