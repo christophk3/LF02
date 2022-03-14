@@ -10,8 +10,8 @@ public class Ware {
     public Ware(String bezeichnung, double preis) {
         this.bezeichnung = bezeichnung;
         this.preis = preis;
-        ArrayList<String> besonderheiten = new ArrayList<>();
-        ArrayList<String> maengel = new ArrayList<>();
+        this.besonderheiten = new ArrayList<>();
+        this.maengel = new ArrayList<>();
     }
 
     public String getBezeichnung() {
