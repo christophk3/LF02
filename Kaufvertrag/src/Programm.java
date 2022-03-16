@@ -1,7 +1,6 @@
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 
-public class Test2 {
+public class Programm {
     public static void main(String[] args) throws FileNotFoundException {
         Ware ware = new Ware("dicker Karren", 12.500);
         ware.setBeschreibung("schluckt 20 Liter");
@@ -21,10 +20,6 @@ public class Test2 {
         Kaufvertrag vertrag = new Kaufvertrag(verkaeufer, kaeufer, ware);
         vertrag.setZahlungsModalitaeten("Privater Barverkauf");
         System.out.println(vertrag);
-        String datei = "H://LF02_//Text/Kaufvertrag.txt";
-        PrintWriter writer= new PrintWriter(datei);
-        writer.println(vertrag);
-        writer.close();
 
     }
 }
