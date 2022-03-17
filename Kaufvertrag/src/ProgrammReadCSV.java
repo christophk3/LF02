@@ -11,12 +11,25 @@ public class ProgrammReadCSV {
         String zeile;
         while ((zeile = br.readLine()) != null) {
             String str = zeile;
-            String[]parts = str.split(";");
-            System.out.println(Arrays.toString(parts));
+            String[]array = str.split(";");
+            System.out.println(Arrays.toString(array));
+
+            String[]name = array[1].split(" ");
+            String[]adresse = array[2].split(" ");
+
+            if (array[0] == "Verkaeufer") {
+                Vertragspartner verkaeufer = new Vertragspartner(name[0],name[1]);
+                verkaeufer.setAdresse(new Adresse(adresse[0],adresse[1],array[3],array[4]));
+
+
+
+            }
+
+
+
+
 
         }
-
-
 
 
     }
