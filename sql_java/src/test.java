@@ -14,5 +14,6 @@ public class test {
         WareDAO wareDAO = new WareDAO();
         Ware ware = wareDAO.read(1);
         System.out.println(ware);
+
     }
 }

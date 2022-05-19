@@ -42,20 +42,31 @@ public class WareDAO {
             resultSet.next();
 
             //ResultSet auswerten
+
             String bezeichnung = resultSet.getString("bezeichnung");
             String beschreibung = resultSet.getString("beschreibung");
             double preis = resultSet.getDouble("preis");
-            String[] besonderheiten = resultSet.getString("besonderheiten").split(";");
-            String[] maengel = resultSet.getString("maengel").split(";");
-
-
-
-
-
+            String besonderheiten = resultSet.getString("besonderheiten");
+            String maengel = resultSet.getString("maengel");
 
             // Ware erstellen
             ware = new Ware(bezeichnung, preis);
             ware.setBeschreibung(beschreibung);
+
+            if (besonderheiten != null) {
+                String[] besonderheitenArray = besonderheiten.split(";");
+                for (String b : besonderheitenArray) {
+                    ware.getBesonderheitenListe().add(b.trim());
+                }
+            }
+
+            if (maengel != null) {
+                String[] maengelArray = maengel.split(";");
+                for (String m : maengelArray) {
+                    ware.getMaengelListe().add(m.trim());
+                }
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
