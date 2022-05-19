@@ -3,6 +3,7 @@ package dao;
 import businessObjects.Ware;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class WareDAO {
     private final String CLASSNAME = "org.sqlite.JDBC";
@@ -44,11 +45,17 @@ public class WareDAO {
             String bezeichnung = resultSet.getString("bezeichnung");
             String beschreibung = resultSet.getString("beschreibung");
             double preis = resultSet.getDouble("preis");
+            String[] besonderheiten = resultSet.getString("besonderheiten").split(";");
+            String[] maengel = resultSet.getString("maengel").split(";");
+
+
+
+
 
 
             // Ware erstellen
             ware = new Ware(bezeichnung, preis);
-            ware.setBezeichnung(bezeichnung);
+            ware.setBeschreibung(beschreibung);
 
         } catch (SQLException e) {
             e.printStackTrace();
