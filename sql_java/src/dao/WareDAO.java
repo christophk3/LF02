@@ -29,7 +29,6 @@ public class WareDAO {
         try {
             connection = DriverManager.getConnection(CONNECTIONSRING);
 
-
             // SQL-Abfrage erstellen
             String sql = "SELECT * FROM ware where warenNr = ?";
             preparedStatement = connection.prepareStatement(sql);
@@ -41,31 +40,8 @@ public class WareDAO {
             // Zeiger auf den ersten Datensatz setzen
             resultSet.next();
 
-            //ResultSet auswerten
-
-            String bezeichnung = resultSet.getString("bezeichnung");
-            String beschreibung = resultSet.getString("beschreibung");
-            double preis = resultSet.getDouble("preis");
-            String besonderheiten = resultSet.getString("besonderheiten");
-            String maengel = resultSet.getString("maengel");
-
-            // Ware erstellen
-            ware = new Ware(bezeichnung, preis);
-            ware.setBeschreibung(beschreibung);
-
-            if (besonderheiten != null) {
-                String[] besonderheitenArray = besonderheiten.split(";");
-                for (String b : besonderheitenArray) {
-                    ware.getBesonderheitenListe().add(b.trim());
-                }
-            }
-
-            if (maengel != null) {
-                String[] maengelArray = maengel.split(";");
-                for (String m : maengelArray) {
-                    ware.getMaengelListe().add(m.trim());
-                }
-            }
+            // Methode aufrufen
+            ware = createObject(resultSet);
 
 
         } catch (SQLException e) {
@@ -102,35 +78,12 @@ public class WareDAO {
             //SQL-Abfrage ausführen
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            // Zeiger auf den ersten Datensatz setzen
-            //ResultSet auswerten
-
             alleWaren = new ArrayList<>();
+            Ware ware = null;
+
             while (resultSet.next()) {
-                String bezeichnung = resultSet.getString("bezeichnung");
-                String beschreibung = resultSet.getString("beschreibung");
-                double preis = resultSet.getDouble("preis");
-                String besonderheiten = resultSet.getString("besonderheiten");
-                String maengel = resultSet.getString("maengel");
-
-                // Ware erstellen
-                Ware ware = new Ware(bezeichnung, preis);
-                ware.setBeschreibung(beschreibung);
+                ware = createObject(resultSet);
                 alleWaren.add(ware);
-
-                if (besonderheiten != null) {
-                    String[] besonderheitenArray = besonderheiten.split(";");
-                    for (String b : besonderheitenArray) {
-                        ware.getBesonderheitenListe().add(b.trim());
-                    }
-                }
-
-                if (maengel != null) {
-                    String[] maengelArray = maengel.split(";");
-                    for (String m : maengelArray) {
-                        ware.getMaengelListe().add(m.trim());
-                    }
-                }
             }
 
 
@@ -150,4 +103,60 @@ public class WareDAO {
 
 
     }
+
+    private Ware createObject(ResultSet resultSet) {
+        Ware ware = null;
+        try {
+            String bezeichnung = resultSet.getString("bezeichnung");
+            String beschreibung = resultSet.getString("beschreibung");
+            double preis = resultSet.getDouble("preis");
+            String besonderheiten = resultSet.getString("besonderheiten");
+            String maengel = resultSet.getString("maengel");
+
+            // Ware erstellen
+            ware = new Ware(bezeichnung, preis);
+            ware.setBeschreibung(beschreibung);
+
+            if (besonderheiten != null) {
+                String[] besonderheitenArray = besonderheiten.split(";");
+                for (String b : besonderheitenArray) {
+                    ware.getBesonderheitenListe().add(b.trim());
+                }
+            }
+
+            if (maengel != null) {
+                String[] maengelArray = maengel.split(";");
+                for (String m : maengelArray) {
+                    ware.getMaengelListe().add(m.trim());
+                }
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ware;
+    }
+
+    public void deleteWare(int warenNr) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection(CONNECTIONSRING);
+            String sql = "DELETE FROM ware WHERE warenNr =?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 31);
+            preparedStatement.executeUpdate();
+
+        }
+
+        catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connection.close();
+        }
+
+    }
 }
+
