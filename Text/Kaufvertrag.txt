@@ -1,0 +1,30 @@
+Verkäufer: 
+Name: Ursula Getrud
+Nachname: von der Leyen
+Ausweisnummer: 9876543210
+Adresse: Straße: Rue de la Loi
+Hausnummer: 200
+Postleitzahl: 1049
+Ort: Brüssel
+
+
+Käufer: 
+Name: Markus
+Nachname: Söder
+Ausweisnummer: 0123456789
+Adresse: Straße: Franz-Josef-Strauß-Ring
+Hausnummer: 1
+Postleitzahl: 80539
+Ort: München
+
+
+Ware: 
+Bezeichnung: dicker Karren
+Beschreibung: schluckt 20 Liter
+Preis: 12.5
+Besonderheiten: [Carbon Pommestheke, tiefergelegt]
+Mängel: [schluckt mehr als 30 Liter, kein Motor vorhanden]
+
+Zahlungsmodalitäten: 
+Privater Barverkauf
+

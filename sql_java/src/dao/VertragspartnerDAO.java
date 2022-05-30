@@ -184,4 +184,27 @@ public class VertragspartnerDAO {
         }
 
     }
+
+    public void updateVertragspartner(String warenNr, Vertragspartner vertragspartner) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection(CONNECTIONSRING);
+            String sql = "UPDATE vertragspartner SET * WHERE ausweisNr =?";
+            preparedStatement.setString(1, vertragspartner.getAusweisNr());
+            preparedStatement.setString(2, vertragspartner.getVorname());
+            preparedStatement.setString(3, vertragspartner.getNachname());
+            preparedStatement.setString(4, vertragspartner.getAdresse().getStrasse());
+            preparedStatement.setString(5, vertragspartner.getAdresse().getHausNr());
+            preparedStatement.setString(6, vertragspartner.getAdresse().getPlz());
+            preparedStatement.setString(7, vertragspartner.getAdresse().getOrt());
+            preparedStatement.executeUpdate();
+
+
+        } catch (
+                SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -158,18 +158,18 @@ public class WareDAO {
 
     }
 
-    public void insertWare(Ware ware) {
+    public Ware insertWare(Ware ware) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
 
-        String besonderheitenliste = "";
+        String besonderheitenliste = " ";
         for (String b : ware.getBesonderheitenListe()
         ) {
             besonderheitenliste += b + "; ";
 
         }
-        String maengelliste = "";
+        String maengelliste = " ";
         for (String m : ware.getMaengelListe()
         ) {
             maengelliste += m + "; ";
@@ -187,13 +187,18 @@ public class WareDAO {
             preparedStatement.setDouble(3, ware.getPreis());
             preparedStatement.setString(4, besonderheitenliste);
             preparedStatement.setString(5, maengelliste);
-
-
             preparedStatement.executeUpdate();
+            //Nummer der neu hinzugefügten Ware ermitteln. Eine Variante, die nicht bei allen Datenbanken funktioniert.
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            //Datenzeiger auf ersten Eintrag in ResultSet mit der erzeugten ID positionieren:
+            resultSet.next();
+            //WarenNr setzen:
+            ware.setWarenNr(resultSet.getInt("last_insert_rowid()")); // Columnlabel hängt von DB ab.
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return ware;
 
     }
 }
