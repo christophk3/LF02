@@ -1,5 +1,6 @@
 package dao;
 
+import businessObjects.Vertragspartner;
 import businessObjects.Ware;
 
 import java.sql.*;
@@ -146,15 +147,52 @@ public class WareDAO {
             connection = DriverManager.getConnection(CONNECTIONSRING);
             String sql = "DELETE FROM ware WHERE warenNr =?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, 31);
+            preparedStatement.setInt(1, warenNr);
             preparedStatement.executeUpdate();
 
-        }
-
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             connection.close();
+        }
+
+    }
+
+    public void insertWare(Ware ware) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+
+        String besonderheitenliste = "";
+        for (String b : ware.getBesonderheitenListe()
+        ) {
+            besonderheitenliste += b + "; ";
+
+        }
+        String maengelliste = "";
+        for (String m : ware.getMaengelListe()
+        ) {
+            maengelliste += m + "; ";
+
+        }
+
+
+        try {
+            connection = DriverManager.getConnection(CONNECTIONSRING);
+
+            String sql = "INSERT INTO ware (bezeichnung, beschreibung, preis, besonderheiten, maengel) VALUES(?,?,?,?,?)";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, ware.getBezeichnung());
+            preparedStatement.setString(2, ware.getBeschreibung());
+            preparedStatement.setDouble(3, ware.getPreis());
+            preparedStatement.setString(4, besonderheitenliste);
+            preparedStatement.setString(5, maengelliste);
+
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }

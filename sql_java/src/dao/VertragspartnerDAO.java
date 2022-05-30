@@ -137,15 +137,23 @@ public class VertragspartnerDAO {
             connection = DriverManager.getConnection(CONNECTIONSRING);
             String sql = "DELETE FROM vertragspartner WHERE ausweisNr =?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, "69");
+            preparedStatement.setString(1, ausweisNr);
             preparedStatement.executeUpdate();
 
-        }
-
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            connection.close();
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }
@@ -154,19 +162,26 @@ public class VertragspartnerDAO {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
+
         try {
             connection = DriverManager.getConnection(CONNECTIONSRING);
-            String sql = "INSERT INTO vertragspartner(aus" + vertragspartner.getAusweisNr() +
-                    ", vorname" + vertragspartner.getVorname() +
-                    ", nachname" + vertragspartner.getNachname() +
-                    ", adresse" + vertragspartner.getAdresse();
 
+            String sql = "INSERT INTO vertragspartner VALUES(?,?,?,?,?,?,?)";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, "69");
+            preparedStatement.setString(1, vertragspartner.getAusweisNr());
+            preparedStatement.setString(2, vertragspartner.getVorname());
+            preparedStatement.setString(3, vertragspartner.getNachname());
+            preparedStatement.setString(4, vertragspartner.getAdresse().getStrasse());
+            preparedStatement.setString(5, vertragspartner.getAdresse().getHausNr());
+            preparedStatement.setString(6, vertragspartner.getAdresse().getPlz());
+            preparedStatement.setString(7, vertragspartner.getAdresse().getOrt());
+
+
             preparedStatement.executeUpdate();
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
 }

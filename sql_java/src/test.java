@@ -1,3 +1,4 @@
+import businessObjects.Adresse;
 import businessObjects.Vertragspartner;
 import businessObjects.Ware;
 import dao.VertragspartnerDAO;
@@ -8,11 +9,15 @@ import java.util.ArrayList;
 
 public class test {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        VertragspartnerDAO vertragspartnerDAO = new VertragspartnerDAO();
-        Vertragspartner vertragspartner = new Vertragspartner("Christoph", "Kroeger");
-        vertragspartner.setAusweisNr("3456");
-        vertragspartnerDAO.insertVertragspartner(vertragspartner);
 
+        WareDAO wareDAO = new WareDAO();
+        Ware ware = new Ware("Joghurt", 0.99);
+        ware.setBeschreibung("Heidebeerjoghurt");
+        ArrayList<String> besonderheiten = new ArrayList<>();
+        besonderheiten.add("Heidebeeren aus der Region");
+        ArrayList<String> maengel = new ArrayList<>();
+        maengel.add("abgelaufen");
+        wareDAO.insertWare(ware);
 
     }
 }
