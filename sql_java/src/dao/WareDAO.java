@@ -164,14 +164,12 @@ public class WareDAO {
 
 
         String besonderheitenliste = " ";
-        for (String b : ware.getBesonderheitenListe()
-        ) {
+        for (String b : ware.getBesonderheitenListe()) {
             besonderheitenliste += b + "; ";
 
         }
         String maengelliste = " ";
-        for (String m : ware.getMaengelListe()
-        ) {
+        for (String m : ware.getMaengelListe()) {
             maengelliste += m + "; ";
 
         }
@@ -201,5 +199,42 @@ public class WareDAO {
         return ware;
 
     }
+
+    public void updateWare(int warenNr, Ware ware) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String besonderheitenliste = " ";
+        for (String b : ware.getBesonderheitenListe()) {
+            besonderheitenliste += b + "; ";
+
+        }
+        String maengelliste = " ";
+        for (String m : ware.getMaengelListe()) {
+            maengelliste += m + "; ";
+
+        }
+
+
+            try {
+                connection = DriverManager.getConnection(CONNECTIONSRING);
+
+                String sql = "UPDATE ware SET bezeichnung = ?, beschreibung = ?, preis = ?, besonderheiten = ?, maengel = ? WHERE warenNr = ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, ware.getBezeichnung());
+                preparedStatement.setString(2, ware.getBeschreibung());
+                preparedStatement.setDouble(3, ware.getPreis());
+                preparedStatement.setString(4, besonderheitenliste);
+                preparedStatement.setString(5, maengelliste);
+                preparedStatement.setInt(6, warenNr);
+                preparedStatement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+    }
+
+
 }
 

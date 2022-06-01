@@ -176,7 +176,6 @@ public class VertragspartnerDAO {
             preparedStatement.setString(6, vertragspartner.getAdresse().getPlz());
             preparedStatement.setString(7, vertragspartner.getAdresse().getOrt());
 
-
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -185,13 +184,14 @@ public class VertragspartnerDAO {
 
     }
 
-    public void updateVertragspartner(String warenNr, Vertragspartner vertragspartner) {
+    public void updateVertragspartner(String ausweisNr, Vertragspartner vertragspartner) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connection = DriverManager.getConnection(CONNECTIONSRING);
-            String sql = "UPDATE vertragspartner SET * WHERE ausweisNr =?";
+            String sql = "UPDATE vertragspartner SET ausweisNr = ?, vorname = ?, nachname = ?, strasse = ?, hausNr = ?, plz = ?, ort = ? WHERE ausweisNr =?";
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, vertragspartner.getAusweisNr());
             preparedStatement.setString(2, vertragspartner.getVorname());
             preparedStatement.setString(3, vertragspartner.getNachname());
@@ -199,6 +199,8 @@ public class VertragspartnerDAO {
             preparedStatement.setString(5, vertragspartner.getAdresse().getHausNr());
             preparedStatement.setString(6, vertragspartner.getAdresse().getPlz());
             preparedStatement.setString(7, vertragspartner.getAdresse().getOrt());
+            preparedStatement.setString(8,ausweisNr);
+
             preparedStatement.executeUpdate();
 
 

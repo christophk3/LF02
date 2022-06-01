@@ -10,8 +10,15 @@ import java.util.ArrayList;
 public class test {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
-        VertragspartnerDAO vertragspartnerDAO = new VertragspartnerDAO();
-        vertragspartnerDAO.updateVertragspartner("3456","Christoph", "Kröger", "Ledaweg", "64",  );
+        WareDAO wareDAO = new WareDAO();
+        Ware ware = new Ware("haus", 3000);
+        ware.setBeschreibung("gute Lage");
+        ware.getBesonderheitenListe().add("fenster; tueren; dachboden");
+        ware.getMaengelListe().add("loch in der wand");
+        wareDAO.updateWare(36, ware);
+
+
+
 
     }
 }
