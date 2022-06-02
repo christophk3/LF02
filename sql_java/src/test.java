@@ -9,13 +9,11 @@ import java.util.ArrayList;
 
 public class test {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-
-        WareDAO wareDAO = new WareDAO();
-        Ware ware = new Ware("haus", 3000);
-        ware.setBeschreibung("gute Lage");
-        ware.getBesonderheitenListe().add("fenster; tueren; dachboden");
-        ware.getMaengelListe().add("loch in der wand");
-        wareDAO.updateWare(36, ware);
+        VertragspartnerDAO vertragspartnerDAO = new VertragspartnerDAO();
+        Vertragspartner vertragspartner = new Vertragspartner("Christoph","Kröger");
+        vertragspartner.setAusweisNr("1234");
+        vertragspartner.setAdresse(new Adresse("Ledaweg","64","28359","Bremen"));
+        System.out.println(vertragspartnerDAO.read());
 
 
 

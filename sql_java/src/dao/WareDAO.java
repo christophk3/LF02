@@ -216,22 +216,22 @@ public class WareDAO {
         }
 
 
-            try {
-                connection = DriverManager.getConnection(CONNECTIONSRING);
+        try {
+            connection = DriverManager.getConnection(CONNECTIONSRING);
 
-                String sql = "UPDATE ware SET bezeichnung = ?, beschreibung = ?, preis = ?, besonderheiten = ?, maengel = ? WHERE warenNr = ?";
-                preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setString(1, ware.getBezeichnung());
-                preparedStatement.setString(2, ware.getBeschreibung());
-                preparedStatement.setDouble(3, ware.getPreis());
-                preparedStatement.setString(4, besonderheitenliste);
-                preparedStatement.setString(5, maengelliste);
-                preparedStatement.setInt(6, warenNr);
-                preparedStatement.executeUpdate();
+            String sql = "UPDATE ware SET bezeichnung = ?, beschreibung = ?, preis = ?, besonderheiten = ?, maengel = ? WHERE warenNr = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, ware.getBezeichnung());
+            preparedStatement.setString(2, ware.getBeschreibung());
+            preparedStatement.setDouble(3, ware.getPreis());
+            preparedStatement.setString(4, besonderheitenliste);
+            preparedStatement.setString(5, maengelliste);
+            preparedStatement.setInt(6, warenNr);
+            preparedStatement.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

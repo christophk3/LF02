@@ -199,7 +199,7 @@ public class VertragspartnerDAO {
             preparedStatement.setString(5, vertragspartner.getAdresse().getHausNr());
             preparedStatement.setString(6, vertragspartner.getAdresse().getPlz());
             preparedStatement.setString(7, vertragspartner.getAdresse().getOrt());
-            preparedStatement.setString(8,ausweisNr);
+            preparedStatement.setString(8, ausweisNr);
 
             preparedStatement.executeUpdate();
 
