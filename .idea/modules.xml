@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/Tresor/Tresor.iml" filepath="$PROJECT_DIR$/Tresor/Tresor.iml" />
       <module fileurl="file://$PROJECT_DIR$/sql_java/sql_java.iml" filepath="$PROJECT_DIR$/sql_java/sql_java.iml" />
       <module fileurl="file://$PROJECT_DIR$/sql_java2/sql_java2.iml" filepath="$PROJECT_DIR$/sql_java2/sql_java2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sql_java3/sql_java3.iml" filepath="$PROJECT_DIR$/sql_java3/sql_java3.iml" />
     </modules>
   </component>
 </project>
