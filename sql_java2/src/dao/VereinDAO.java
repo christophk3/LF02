@@ -108,6 +108,13 @@ public class VereinDAO {
             connection = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "UPDATE Tabelle SET Tabellenplatz = ?, Verein = ?, Spiele = ?, Tordifferenz = ?, Punkte = ? WHERE Tabellenplatz = ?";
             preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,tabelle.getTabellenplatz());
+            preparedStatement.setString(2,tabelle.getVerein());
+            preparedStatement.setInt(3,tabelle.getSpiele());
+            preparedStatement.setInt(4,tabelle.getTordifferenz());
+            preparedStatement.setInt(5,tabelle.getPunkte());
+            preparedStatement.setInt(6,tabellenplatz);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

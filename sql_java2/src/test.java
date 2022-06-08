@@ -7,8 +7,8 @@ public class test {
         Tabelle tabelle = new Tabelle(2, "Werder Bremen");
         tabelle.setSpiele(34);
         tabelle.setTordifferenz(32);
-        tabelle.setPunkte(54);
-        vereinDAO.insert(tabelle);
+        tabelle.setPunkte(30);
+        vereinDAO.update(tabelle, 2);
 
 
     }
