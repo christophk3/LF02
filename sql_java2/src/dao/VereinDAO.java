@@ -4,6 +4,7 @@ import businessObjects.Tabelle;
 
 import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class VereinDAO {
     private final String CLASSNAME = "org.sqlite.JDBC";
@@ -13,19 +14,23 @@ public class VereinDAO {
         Class.forName(CLASSNAME);
     }
 
-    public Tabelle read(int tabellenplatz) {
-        Tabelle tabelle = null;
+    public ArrayList<Tabelle>read() {
+        ArrayList<Tabelle>alleVereine = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connection = DriverManager.getConnection(CONNECTIONSTRING);
-            String sql = "select * from Tabelle where Tabellenplatz = ?";
+            String sql = "select * from Tabelle";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, tabellenplatz);
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            tabelle = createObjekt(resultSet);
+            alleVereine = new ArrayList<>();
+            Tabelle tabelle = null;
+            while (resultSet.next()) {
+                tabelle = createObjekt(resultSet);
+                alleVereine.add(tabelle);
+            }
+
 
 
         } catch (SQLException e) {
@@ -37,8 +42,7 @@ public class VereinDAO {
                 e.printStackTrace();
             }
         }
-
-        return tabelle;
+        return alleVereine;
 
     }
 
