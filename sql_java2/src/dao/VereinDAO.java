@@ -14,8 +14,26 @@ public class VereinDAO {
         Class.forName(CLASSNAME);
     }
 
-    public ArrayList<Tabelle>read() {
-        ArrayList<Tabelle>alleVereine = null;
+    public Tabelle read(int tabellenplatz) {
+        Tabelle tabelle = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DriverManager.getConnection(CONNECTIONSTRING);
+            String sql = "SELECT * FROM Tabelle WHERE Tabellenplatz = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, tabellenplatz);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            tabelle = createObjekt(resultSet);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return tabelle;
+    }
+
+    public ArrayList<Tabelle> readAll() {
+        ArrayList<Tabelle> alleVereine = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -30,7 +48,6 @@ public class VereinDAO {
                 tabelle = createObjekt(resultSet);
                 alleVereine.add(tabelle);
             }
-
 
 
         } catch (SQLException e) {
@@ -87,7 +104,7 @@ public class VereinDAO {
 
     }
 
-    public void insert(Tabelle tabelle) {
+    public void create(Tabelle tabelle) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -95,29 +112,29 @@ public class VereinDAO {
             String sql = "INSERT INTO Tabelle VALUES(?,?,?,?,?)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, tabelle.getTabellenplatz());
-            preparedStatement.setString(2,tabelle.getVerein());
-            preparedStatement.setInt(3,tabelle.getSpiele());
-            preparedStatement.setInt(4,tabelle.getTordifferenz());
-            preparedStatement.setInt(5,tabelle.getPunkte());
+            preparedStatement.setString(2, tabelle.getVerein());
+            preparedStatement.setInt(3, tabelle.getSpiele());
+            preparedStatement.setInt(4, tabelle.getTordifferenz());
+            preparedStatement.setInt(5, tabelle.getPunkte());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void update(Tabelle tabelle, int tabellenplatz) {
+    public void update(int tabellenplatz, String verein, int spiele, int tordifferenz, int punkte) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = DriverManager.getConnection(CONNECTIONSTRING);
             String sql = "UPDATE Tabelle SET Tabellenplatz = ?, Verein = ?, Spiele = ?, Tordifferenz = ?, Punkte = ? WHERE Tabellenplatz = ?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,tabelle.getTabellenplatz());
-            preparedStatement.setString(2,tabelle.getVerein());
-            preparedStatement.setInt(3,tabelle.getSpiele());
-            preparedStatement.setInt(4,tabelle.getTordifferenz());
-            preparedStatement.setInt(5,tabelle.getPunkte());
-            preparedStatement.setInt(6,tabellenplatz);
+            preparedStatement.setInt(1, tabellenplatz);
+            preparedStatement.setString(2, verein);
+            preparedStatement.setInt(3,spiele);
+            preparedStatement.setInt(4,tordifferenz);
+            preparedStatement.setInt(5, punkte);
+            preparedStatement.setInt(6, tabellenplatz);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
